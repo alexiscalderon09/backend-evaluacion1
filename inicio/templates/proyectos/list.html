@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Proyectos</title>
+</head>
+
+<body class="bg-gray-50 p-6">
+    <main class="mx-auto max-w-4xl">
+        <div class="mb-4 flex items-center justify-between">
+            <h1 class="text-2xl font-bold">Proyectos</h1>
+            <a href="{% url 'proyecto_create' %}" class="rounded-lg border bg-gray-900 px-4 py-2 text-white">Nuevo</a>
+        </div>
+        <div class="grid gap-3">
+            {% for p in proyectos %}
+            <article class="rounded-xl border bg-white p-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="font-semibold">{{ p.nombre }}</h2>
+                    <div class="flex gap-2 text-sm">
+                        <a class="underline" href="{% url 'proyecto_update' p.pk %}">Editar</a>
+                        <a class="underline text-red-600" href="{% url 'proyecto_delete' p.pk %}">Eliminar</a>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-700">{{ p.descripcion }}</p>
+                {% if p.url %}<a class="text-sm underline" href="{{ p.url }}" target="_blank">Ver</a>{% endif %}
+            </article>
+            {% empty %}
+            <p>No hay proyectos aún.</p>
+            {% endfor %}
+        </div>
+        <div class="mt-6"><a class="underline" href="{% url 'landing' %}">← Volver</a></div>
+    </main>
+</body>
+
+</html>
