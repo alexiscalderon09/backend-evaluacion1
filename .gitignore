@@ -1,0 +1,74 @@
+# === Python / Django ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+logs/
+*.pid
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example  # mantén un ejemplo versionado
+
+# Base de datos SQLite (solo para dev)
+db.sqlite3
+db.sqlite3-journal
+
+# Archivos generados por collectstatic
+staticfiles/
+static_root/
+# (no ignores "static/" si allí guardas tus fuentes estáticas)
+
+# Medios subidos por el usuario
+media/
+Media/
+
+# Cobertura / tests
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+.mypy_cache/
+.pyre/
+.pytype/
+coverage.xml
+
+# Construcción / distribución
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDEs / editores
+.vscode/
+.idea/
+*.iml
+.vs/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Docker (si dejas datos locales)
+docker-data/
+
+# === Migraciones ===
+# No ignores migraciones: deben versionarse.
+**/migrations/__pycache__/
+**/migrations/*.py[cod]
+# (los .py de migraciones se versionan, no se ignoran)

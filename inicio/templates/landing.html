@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ perfil.nombre }} — {{ perfil.rol }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <main class="mx-auto max-w-6xl p-6 sm:p-10">
+        <section class="rounded-3xl border bg-white p-8 shadow-sm">
+            <div class="flex flex-col gap-3">
+                <h1 class="text-3xl md:text-4xl font-bold">{{ perfil.nombre }}</h1>
+                <p class="text-lg text-gray-700">{{ perfil.rol }}</p>
+                <p class="max-w-3xl text-gray-700">{{ perfil.resumen }}</p>
+                <p class="text-sm text-gray-600">
+                    Experiencia aprox.: {{ perfil.experiencia_anios }} años
+                    {% if perfil.experiencia_anios >= 3 %}
+                    <span class="text-green-700 text-sm">Nivel: Intermedio/Avanzado</span>
+                    {% elif perfil.experiencia_anios >= 1 %}
+                    <span class="text-yellow-700 text-sm">Nivel: Junior/Intermedio</span>
+                    {% else %}
+                    <span class="text-gray-700 text-sm">Nivel: En formación</span>
+                    {% endif %}
+                </p>
+                <div class="flex flex-wrap gap-3 text-sm text-gray-700">
+                    <span class="inline-block rounded-full border px-3 py-1">📍 {{ perfil.ubicacion }}</span>
+                    <a class="inline-block rounded-full border px-3 py-1 hover:bg-gray-50"
+                        href="mailto:{{ perfil.contacto.email }}">✉ {{ perfil.contacto.email }}</a>
+                    <span class="inline-block rounded-full border px-3 py-1">☎ {{ perfil.contacto.telefono }}</span>
+                    <a class="inline-block rounded-full border px-3 py-1 hover:bg-gray-50"
+                        href="{{ perfil.contacto.github }}" target="_blank" rel="noopener">GitHub</a>
+                    <a class="inline-block rounded-full border px-3 py-1 hover:bg-gray-50"
+                        href="{{ perfil.contacto.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-8 grid gap-6 lg:grid-cols-3">
+            <div class="rounded-2xl border bg-white p-6 shadow-sm">
+                <h2 class="mb-3 text-lg font-semibold">Habilidades destacadas</h2>
+                <div class="flex flex-wrap gap-2">
+                    {% for h in perfil.habilidades_top %}
+                    <span class="rounded-full border px-3 py-1 text-sm">{{ h }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="rounded-2xl border bg-white p-6 shadow-sm lg:col-span-2">
+                <h2 class="mb-3 text-lg font-semibold">Proyectos destacados</h2>
+                <div class="space-y-4">
+                    {% for p in perfil.proyectos %}
+                    <article class="rounded-xl border p-4 hover:bg-gray-50">
+                        <div class="flex items-center justify-between gap-3">
+                            <h3 class="text-base font-semibold">{{ p.nombre }}</h3>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-700">{{ p.descripcion }}</p>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="rounded-2xl border bg-white p-6 shadow-sm">
+                <h2 class="mb-3 text-lg font-semibold">Experiencia</h2>
+                <div class="space-y-4">
+                    {% for e in perfil.experiencia %}
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium">{{ e.cargo }} - {{ e.empresa }}</h3>
+                        </div>
+                        <p class="text-sm text-gray-700">{{ e.detalle }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="rounded-2xl border bg-white p-6 shadow-sm">
+                <h2 class="mb-3 text-lg font-semibold">Educación</h2>
+                <ul class="space-y-3">
+                    {% for ed in perfil.educacion %}
+                    <li>
+                        <div class="font-medium">{{ ed.titulo }}</div>
+                        <div class="text-sm text-gray-700">{{ ed.institucion }} · {{ ed.periodo }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <footer class="mt-10 border-t pt-6 text-sm text-gray-600">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <p>© {{ perfil.nombre }} — {{ perfil.rol }}</p>
+                <div class="flex gap-3">
+                    <a href="mailto:{{ perfil.contacto.email }}"
+                        class="underline underline-offset-4 decoration-gray-300 hover:decoration-gray-500">Contacto</a>
+                    <a href="{{ perfil.contacto.github }}"
+                        class="underline underline-offset-4 decoration-gray-300 hover:decoration-gray-500"
+                        target="_blank" rel="noopener">GitHub</a>
+                    <a href="{{ perfil.contacto.linkedin }}"
+                        class="underline underline-offset-4 decoration-gray-300 hover:decoration-gray-500"
+                        target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
